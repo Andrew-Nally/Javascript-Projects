@@ -1,4 +1,4 @@
-function my_Dictionary() {
+function myDictionary() {
     var Me = {
         Species: "Human",
         Color: "Brown",
@@ -7,4 +7,6 @@ function my_Dictionary() {
         Eye_Color: "Brown"
     };
     document.getElementById("Dictionary").innerHTML = Me.Species;
-}
+    delete Me.Race;
+    document.getElementById("delete_race").innerHTML = Me.Race;
+};
