@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic JS 9</title>
+    <link rel="stylesheet" href="./CSS/Basic_CSS_1.css" type="text/css"/>
+    <script src="JS/Basic_Javascript_9.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+<!------countdown timer------>
+    <p> How many seconds would you like to set your alarm for? </p>
+    <input id="seconds" value = "" />
+    <button onclick="countdown()">SET SECONDS</button>
+    <p id="timer"></p>
+<!-----Slideshow------>
+<header>
+     <h1> Javascript, HTML, and CSS Slideshow</h1>
+        <h3>Andrew Nally-The Tech Academy</h3>
+</header>
+<!------Slideshow Container----------->
+<div class="slideshow_Container">
+        <div class="slide fade">
+            <div class="slide_Number"> 1 / 5</div>
+             <img src="./images/01.jpg" style="width:100%" />
+             <div class="caption_Text"> Caption Text</div>
+        </div>
+
+        <div class="slide fade">
+            <div class="slide_Number"> 2 / 5</div>
+            <img src="./images/02.jpg" style="width:100%" />
+            <div class="caption_Text"> Caption Text</div>
+        </div>
+
+        <div class="slide fade">
+            <div class="slide_Number"> 3 / 5</div>
+            <img src="./images/03.jpg" style="width:100%"/>
+            <div class="caption_Text"> Caption Text</div>
+        </div>
+
+        <div class="slide fade">
+            <div class="slide_Number"> 4 / 5</div>
+            <img src="./images/04.jpg" style="width:100%"/>
+            <div class="caption_Text"> Caption Text</div>
+        </div>
+
+        <div class="slide fade">
+            <div class="slide_Number"> 5 / 5</div>
+            <img src="./images/05.jpg" style="width:100%" />
+            <div class="caption_Text"> Caption Text</div>
+        </div>
+<!-----Next Previous Buttons------->
+    <a class="prev" onclick="next_Slide(-1)">&#10094</a>
+    <a class="next" onclick="next_Slide(1)">&#10095</a>
+</div>
+<br>
+<!-----dot  navigation bar ------>
+<div style="text-align:center">
+    <span class="dot" onclick="current_Slide(1)"></span>
+    <span class="dot" onclick="current_Slide(2)"></span>
+    <span class="dot" onclick="current_Slide(3)"></span>
+    <span class="dot" onclick="current_Slide(4)"></span>
+    <span class="dot" onclick="current_Slide(5)"></span>
+</div>
+<script src="JS/Basic_Javascript_9.js"></script>
+</body>
+</html>
