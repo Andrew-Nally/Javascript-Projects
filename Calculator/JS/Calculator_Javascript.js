@@ -1,68 +1,78 @@
-var Calculator = {
-  Display_Value: "0",
-  First_Operand: null,
-  Wait_Second_Operand: false,
+const calculator = {
+  displayValue: "0",
+  firstOperand: null,
+  waitingForSecondOperand: false,
   operator: null
 };
 
-function Input_Digit(digit) {
-  var { Display_Value, Wait_Seond_Operand } = Calculator;
-  if (Wait_Seond_Operand === true) {
-    Calculator.Display_Value = digit;
-    Calculator.Wait_Second_Operand = false;
+function inputDigit(digit) {
+  const { displayValue, waitingForSecondOperand } = calculator;
+
+  if (waitingForSecondOperand === true) {
+    calculator.displayValue = digit;
+    calculator.waitingForSecondOperand = false;
   } else {
-    Calculator.Display_Value =
-      Display_Value === "0" ? digit : Display_Value + digit;
+    calculator.displayValue =
+      displayValue === "0" ? digit : displayValue + digit;
   }
 }
 
-function Input_Decimal(dot) {
-  if (Calculator.Wait_Second_Operand === true) return;
-  if (Calculator.Display_Value.includes(dot)) {
-    Calculator.Display_Value += dot;
+function inputDecimal(dot) {
+  if (calculator.waitingForSecondOperand === true) return;
+  if (!calculator.displayValue.includes(dot)) {
+    calculator.displayValue += dot;
   }
 }
 
-function Handle_operator(Next_Operator) {
-  var { First_Operand, Display_Value, operator } = Calculator;
-  var Value_of_Input = parseFloat(Display_Value);
-  if (operator && Calculator.Wait_Second_Operand) {
-    Calculator.operator = Next_Operator;
+function handleOperator(nextOperator) {
+  const { firstOperand, displayValue, operator } = calculator;
+  const inputValue = parseFloat(displayValue);
+
+  if (operator && calculator.waitingForSecondOperand) {
+    calculator.operator = nextOperator;
     return;
   }
-  if (First_Operand === null) {
-    Calculator.First_Operand = Value_of_Input;
-  } else if (operator) {
-    var Value_Now = First_Operand || 0;
-    var result = Perform_Calculation[operator](Value_Now, Value_of_Input);
 
-    Calculator.Display_Value = String(result);
-    Calculator.First_Operand = result;
+  if (firstOperand == null) {
+    calculator.firstOperand = inputValue;
+  } else if (operator) {
+    const currentValue = firstOperand || 0;
+    const result = performCalculation[operator](currentValue, inputValue);
+
+    calculator.displayValue = String(result);
+    calculator.firstOperand = result;
   }
-  Calculator.Wait_Second_Operand = true;
-  Calculator.operator = Next_Operator;
+
+  calculator.waitingForSecondOperand = true;
+  calculator.operator = nextOperator;
 }
-const Perform_Calculation = {
-  "/": (First_Operand, Second_Operand) => First_Operand / Second_Operand,
-  "*": (First_Operand, Second_Operand) => First_Operand * Second_Operand,
-  "+": (First_Operand, Second_Operand) => First_Operand + Second_Operand,
-  "-": (First_Operand, Second_Operand) => First_Operand - Second_Operand,
-  "=": (First_Operand, Second_Operand) => Second_Operand
+
+const performCalculation = {
+  "/": (firstOperand, secondOperand) => firstOperand / secondOperand,
+
+  "*": (firstOperand, secondOperand) => firstOperand * secondOperand,
+
+  "+": (firstOperand, secondOperand) => firstOperand + secondOperand,
+
+  "-": (firstOperand, secondOperand) => firstOperand - secondOperand,
+
+  "=": (firstOperand, secondOperand) => secondOperand
 };
 
-function Calculator_Reset() {
-  Calculator.Display_Value = "0";
-  Calculator.First_Operand = null;
-  Calculator.Wait_Second_Operand = false;
-  Calculator.operator = null;
+function resetCalculator() {
+  calculator.displayValue = "0";
+  calculator.firstOperand = null;
+  calculator.waitingForSecondOperand = false;
+  calculator.operator = null;
 }
 
-function Update_Display() {
+function updateDisplay() {
   const display = document.querySelector(".calculator-screen");
-  display.value = Calculator.Display_Value;
+  display.value = calculator.displayValue;
 }
 
-Update_Display();
+updateDisplay();
+
 const keys = document.querySelector(".calculator-keys");
 keys.addEventListener("click", event => {
   const { target } = event;
@@ -71,21 +81,23 @@ keys.addEventListener("click", event => {
   }
 
   if (target.classList.contains("operator")) {
-    Handle_operator(target.value);
-    Update_Display();
+    handleOperator(target.value);
+    updateDisplay();
     return;
   }
+
   if (target.classList.contains("decimal")) {
-    Input_Decimal(target.value);
-    Update_Display();
+    inputDecimal(target.value);
+    updateDisplay();
     return;
   }
 
   if (target.classList.contains("all-clear")) {
-    Calculator_Reset();
-    Update_Display();
+    resetCalculator();
+    updateDisplay();
     return;
   }
-  Input_Digit(target.value);
-  Update_Display();
+
+  inputDigit(target.value);
+  updateDisplay();
 });
