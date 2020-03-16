@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Basic JS 11</title>
+</head>
+
+<body>
+    <h2 class="example">Andrew Nally</h2>
+        <p class="example">If this works the background color will turn red when the button is clicked.</p>
+        <button onclick="backRed()">Try it</button>
+
+<script>
+    function backRed() {
+        var x, i;
+        x = document.querySelectorAll(".example");
+        for (i = 0; i < x.length; i++) {
+        x[i].style.backgroundColor = "red";
+        }
+    }
+</script>
+<footer class="example">This is a footer</footer>
+<!----------------------------------------------------------------------------
+                                         J QUERY                                
+<--------------------------------------------------------------------------->
+<script>
+    $(document).ready(function() {
+    $("button.alert").on("click", function() {
+        console.log("This Is A Button Alert");
+    })});
+
+</script>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript">
+    </script>
+
+</body>
+</html>

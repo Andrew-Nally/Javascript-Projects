@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML EXAMPLE</title>
+</head>
+<body>
+<p id="XML_Example">
+    <script>
+    var XML_Parser, XML_Document;
+
+    var Chicago = "<chicago>" + 
+        "<state> Illinois </state>" +
+        "<mayor> Lori Lightfoot</mayor>" +
+        "<population> 2.7million </population>" +
+        "<studioRent> $1,928 </studioRent>" +
+        "</chicago>";
+
+        XML_Parser = new DOMParser();
+
+        XML_Document = XML_Parser.parseFromString(Chicago,"text/xml");
+
+        document.getElementById("XML_Example").innerHTML =
+        XML_Document.getElementsByTagName("state")[0].childNodes[0].nodeValue;
+</script>
+</body>
+</html>

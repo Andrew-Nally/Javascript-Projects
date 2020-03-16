@@ -1,7 +1,14 @@
+
+
+//first create an objedt to keep track of values
 const calculator = {
+//this displays the initial 0 on the screen
   displayValue: "0",
+//holds first operand
   firstOperand: null,
+  //checks to see if there was a 2nd operand input
   waitingForSecondOperand: false,
+  //holds the operator(=-*/)
   operator: null
 };
 
