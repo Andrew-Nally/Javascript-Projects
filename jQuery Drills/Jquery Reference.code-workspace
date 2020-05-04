@@ -1,0 +1,14 @@
+{
+    "folders": [
+		{
+			"path": "..\\Javascript-Projects"
+		},
+		{
+			"path": "."
+		}
+	],
+    "settings": {
+		"git.ignoreLimitWarning": true,
+		"liveServer.settings.multiRootWorkspaceName": "jQuery Drills"
+    }
+}
